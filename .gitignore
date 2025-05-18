@@ -1,4 +1,7 @@
 .DS_Store
+test.*
+test
+.clang-format
 # Solution files
 *.soln
 
