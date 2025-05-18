@@ -118,9 +118,8 @@ void write_courses_offered(std::vector<Course> all_courses) {
 	for (const auto& course : all_courses) {
 		if (course.quarter != "null") {
 			courses_offered_list.emplace_back(course);
-			courses_offered_csv << course.title << ',' 
-                                << course.number_of_units << ',' 
-                                << course.quarter << '\n';
+			// operator << re-load implemented in utilss
+			courses_offered_csv << course << '\n';
 		}
 	}
 
@@ -146,7 +145,8 @@ void write_courses_offered(std::vector<Course> all_courses) {
  */
 void write_courses_not_offered(std::vector<Course> unlisted_courses) {
 	/* (STUDENT TODO) Your code goes here... */
-	std::ofstream courses_unoffered_csv(COURSES_NOT_OFFERED_PATH, std::ios::out);
+	std::ofstream courses_unoffered_csv(COURSES_NOT_OFFERED_PATH,
+										std::ios::out);
 	if (!courses_unoffered_csv.is_open()) {
 		std::cerr << "file can't create" << std::endl;
 	}
@@ -156,9 +156,8 @@ void write_courses_not_offered(std::vector<Course> unlisted_courses) {
 	for (const auto& course : unlisted_courses) {
 		if (course.quarter == "null") {
 			courses_unoffered_list.emplace_back(course);
-			courses_unoffered_csv << course.title << ','
-								  << course.number_of_units << ','
-								  << course.quarter << '\n';
+			// operator << re-load implemented in utils
+			courses_unoffered_csv << course << '\n';
 		}
 	}
 
